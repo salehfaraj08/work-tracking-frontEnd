@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+
+.homePhoto{
+    width: 800px;
+    height: 500px;
+}
+.contPhoto{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
