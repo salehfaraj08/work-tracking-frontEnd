@@ -1,13 +1,73 @@
-h1{
+h1 {
     text-align: center;
 }
 
-.homePhoto{
+.homePhoto {
     width: 800px;
     height: 500px;
 }
-.contPhoto{
+
+.contPhoto {
+    width: 100vw;
     margin-top: 10px;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 1025px) {
+    .homePhoto {
+        width: 700px;
+        height: 400px;
+    }
+}
+
+@media only screen and (min-width: 750px) and (max-width: 1025px) {
+    h1 {
+        font-size: 26px;
+    }
+    .homePhoto {
+        width: 600px;
+        height: 350px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 750px) {
+    h1 {
+        font-size: 26px;
+    }
+    .homePhoto {
+        width: 450px;
+        height: 350px;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+    h1 {
+        font-size: 26px;
+    }
+    .homePhoto {
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 450px) {
+    h1 {
+        font-size: 20px;
+    }
+    .homePhoto {
+        width: 320px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 350px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .homePhoto {
+        width: 200px;
+        height: 200px;
+    }
 }

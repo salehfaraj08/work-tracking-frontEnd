@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Link, withRouter,useHistory } from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { isAuthenticated, logout } from '../../services/authentication';
 import './header.css'
 
@@ -10,12 +9,6 @@ const Header = () => {
             history.push('/signin');
         });
     };
-    useEffect(() => {
-        if (!isAuthenticated())
-            history.push('/signin');
-    }, [])
-
-
 
     // render
     return (<>
@@ -75,7 +68,7 @@ const Header = () => {
                     {isAuthenticated() && (
                         <>
                             <li className='log-out'>
-                                <button
+                                <button style={{fontSize:'1.2rem'}}
                                     className='btn btn-link text-secondary text-decoration-none pl-0'
                                     onClick={handleLogout}
                                 >

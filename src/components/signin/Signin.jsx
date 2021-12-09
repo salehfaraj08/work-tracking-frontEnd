@@ -10,7 +10,7 @@ const Signin = () => {
             history.push('/admin');
         } else if (isAuthenticated() && isAuthenticated().role === 'user') {
             history.push('/user');
-        }else{
+        } else {
             history.push('/signin');
         }
     }, [history]);
@@ -20,6 +20,7 @@ const Signin = () => {
         password: '',
     });
     const [msgError, setMsgError] = useState(false);
+    const [showLoader, setShowLoader] = useState(false);
 
     const handleChange = (e) => {
         const regex = /^[0-9]*$/;
@@ -37,7 +38,7 @@ const Signin = () => {
     };
 
     const handleSubmit = async (e) => {
-
+        setShowLoader(true);
         e.preventDefault();
         console.log('login', formData.passportId, formData.password);
         if (formData.passportId.length === 9) {
@@ -56,10 +57,12 @@ const Signin = () => {
                 }
             }
             catch (err) {
+                setShowLoader(false);
                 setMsgError(err.response.data.error);
             }
 
         } else {
+            setShowLoader(false);
             window.alert('your passport id needs to be 9 digits')
         }
 
@@ -75,7 +78,6 @@ const Signin = () => {
                         <span style={{ color: 'black' }} className="login100-form-title p-b-49">
                             Sign In
                         </span>
-
                         <div className="wrap-input100 validate-input m-b-23">
                             <span className="label-input100">Passport Id</span>
                             <div>
@@ -84,11 +86,8 @@ const Signin = () => {
                                     <input required value={formData.passportId} onChange={(e) => handleChange(e)} className="input100" type="text" name="passportId" placeholder="Type your Passport Id" />
                                     <span className="focus-input100"></span>
                                 </div>
-
                             </div>
-
                         </div>
-
                         <div className="wrap-input100 validate-input">
                             <span className="label-input100">Password</span>
                             <div style={{ display: 'flex' }}>
@@ -108,6 +107,7 @@ const Signin = () => {
                         </div>
                         {msgError && <><div className='msgError'>{msgError}</div></>}
                     </form>
+                    {showLoader&&<div className='spinnerCont'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
                 </div>
             </div >
         </div >

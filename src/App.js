@@ -5,6 +5,7 @@ import Home from './components/home/Home';
 import userDisplay from './components/userDisplay'
 import Signin from './components/signin/Signin';
 import adminDisplay from './components/adminDisplay';
+import AddWorker from './components/addWorker/AddWorker';
 const App = () => {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ const App = () => {
           <Route exact path='/signin' component={Signin}/>
           <Route exact path='/admin' component={adminDisplay}/>
           <Route exact path='/user' component={userDisplay}/>
+          <Route exact path='/admin/addWorker' component={AddWorker}/>
 
           
         </Switch>
