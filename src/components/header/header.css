@@ -16,22 +16,32 @@ li {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    
+
     color: #fff;
+}
+.log-out{
+    font-size: 1.2rem;
 }
 
 .nav-links .a {
-    color: #fff;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.fa-sign-in-alt{
+    color: black;
 }
 
 /* LOGO */
 .logo {
     font-size: 32px;
-
+    color: #166088;
 }
+
 .logo:hover {
-    color: burlywood;
-    
+    color: rgb(85, 59, 25);
+
 }
 
 /* NAVBAR MENU */
@@ -42,9 +52,14 @@ li {
 }
 
 .menu li:hover {
-    background-color: #4c9e9e;
+    background-color: #4A6FA5;
     border-radius: 5px;
     transition: 0.3s ease;
+}
+
+.menu li {
+    border-radius: 5px;
+    border: 1px solid white;
 }
 
 .menu li {
@@ -122,7 +137,7 @@ input[type=checkbox] {
 
     input[type=checkbox]:checked~.menu {
         display: block;
-        
+
     }
 
     .hamburger {

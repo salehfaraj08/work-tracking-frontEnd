@@ -6,6 +6,6 @@
 
 body {
   font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 200vh;
-  background: rgba(212, 28, 28, 0.747);
+  min-height: 100vh;
+  background: #C0D6DF;
 }
