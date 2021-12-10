@@ -24,8 +24,14 @@ const Signin = () => {
 
     const handleChange = (e) => {
         const regex = /^[0-9]*$/;
-
-        if (regex.test(e.target.value) || e.target.name === 'password') {
+        console.log(regex.test(e.target.value),e.target.name);
+        if (regex.test(e.target.value) && e.target.name === 'passportId') {
+            setFormData({
+                ...formData,
+                [e.target.name]: e.target.value
+            });
+        }
+        else if(e.target.name !== 'passportId'){
             setFormData({
                 ...formData,
                 [e.target.name]: e.target.value
@@ -34,7 +40,7 @@ const Signin = () => {
         else {
             window.alert('please enter only numbers');
         }
-        console.log(formData);
+        console.log(formData);  
     };
 
     const handleSubmit = async (e) => {
@@ -57,8 +63,13 @@ const Signin = () => {
                 }
             }
             catch (err) {
-                setShowLoader(false);
-                setMsgError(err.response.data.error);
+                if(err.response.data.error){
+                    setMsgError(err.response.data.error);
+                }
+                else{
+                    setMsgError('');
+                }
+                
             }
 
         } else {

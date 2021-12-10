@@ -1,4 +1,207 @@
-.form-cont{
-    height: 40vh;
-    background: white;
+.cont-addworker {
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.cont-addworker .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E7E6EC;
+    width: 50vw;
+    border-radius: 2rem;
+}
+
+.cont-addworker .inner {
+    width: 50vw;
+    margin: auto;
+    padding-top: 68px;
+    padding-bottom: 48px;
+}
+
+.cont-addworker .inner h3 {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-family: "Muli-Bold";
+    text-align: center;
+    margin-bottom: 32px;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+.cont-addworker form {
+    width: 60%;
+    margin-left: 20%;
+}
+
+.cont-addworker .form-group {
+    display: flex;
+}
+
+.cont-addworker .form-group .form-wrapper {
+    width: 50%;
+}
+
+.cont-addworker .form-group .form-wrapper:first-child {
+    margin-right: 20px;
+}
+
+.cont-addworker .form-wrapper {
+    margin-bottom: 17px;
+}
+
+.cont-addworker .form-wrapper label {
+    margin-bottom: 9px;
+    display: block;
+    text-align: center;
+}
+
+.cont-addworker .form-control {
+    border: 1px solid #4A6FA5;
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 20px;
+    font-family: "Muli-Bold";
+    font-size: 1.2rem;
+}
+
+.cont-addworker form .addWorker-btn {
+    border: none;
+    width: 152px;
+    height: 40px;
+    margin: auto;
+    margin-top: 29px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #ae3c33;
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Muli-SemiBold";
+    border-radius: 20px;
+    overflow: hidden;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.cont-addworker form .addWorker-btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f11a09;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.cont-addworker form .addWorker-btn:hover:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+.msgError {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: red;
+    margin-top: 10px;
+}
+
+/***loader spinner***/
+.spinnerCont{
+    display: flex;
+    justify-content: center;
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media (max-width: 600px) {
+    .cont-addworker .wrapper {
+        width: 90vw;
+    }
+
+    .cont-addworker .inner h3 {
+        font-size: 14px;
+    }
+
+    .cont-addworker form {
+        width: 80%;
+        margin-left: 8%
+    }
+    
+    .cont-addworker form .addWorker-btn{
+        width: 35vw;
+    }
+
+    .cont-addworker .inner{
+        width: 100%;
+    }
+    
+} 

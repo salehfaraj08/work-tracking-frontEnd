@@ -1,14 +1,26 @@
 import { Link, withRouter, useHistory } from 'react-router-dom';
-import { isAuthenticated, logout } from '../../services/authentication';
+import { isAuthenticated, isAuthenticatedToken, logout } from '../../services/authentication';
 import './header.css'
+import { logOut } from '../../api/restApi';
 
 const Header = () => {
     const history = useHistory();
     const handleLogout = () => {
+        logOut();
         logout(() => {
             history.push('/signin');
         });
     };
+    const handleClick = async () => {
+        if (isAuthenticated()){
+            console.log("isAuthenticated");
+            const auth = await isAuthenticatedToken();
+            if(!auth){
+                console.log("pushed");
+                history.push('/signin');
+            }
+        }
+    }
 
     // render
     return (<>
@@ -53,22 +65,21 @@ const Header = () => {
                     {isAuthenticated() && isAuthenticated().role === 'admin' && (
                         <>
                             <li>
-                                <Link className='a' to='/admin'>
+                                <Link onClick={handleClick} className='a' to='/admin'>
                                     profile
                                 </Link>
                             </li>
                             <li>
-                                <Link className='a' to='/admin/addWorker'>
+                                <Link onClick={handleClick} className='a' to='/admin/addWorker'>
                                     Add Worker
                                 </Link>
                             </li>
                         </>
                     )}
-
                     {isAuthenticated() && (
                         <>
                             <li className='log-out'>
-                                <button style={{fontSize:'1.2rem'}}
+                                <button style={{ fontSize: '1.2rem' }}
                                     className='btn btn-link text-secondary text-decoration-none pl-0'
                                     onClick={handleLogout}
                                 >

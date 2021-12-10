@@ -15,9 +15,11 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-
+    padding: 3vw;
+    height: 13vh;
     color: #fff;
+    border: 1px solid #4F6D7A;
+    border-radius: 2rem;
 }
 
 
@@ -57,7 +59,7 @@ li {
 
 .menu li {
     border-radius: 5px;
-    border: 1px solid white;
+    border: 1px solid #4F6D7A;
     padding: 5px 14px;
 }
 

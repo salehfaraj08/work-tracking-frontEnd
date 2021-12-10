@@ -1,3 +1,4 @@
+import { getToken } from "../api/restApi";
 const deleteLocalStorage = (key) => {
     localStorage.removeItem(key);
 };
@@ -22,10 +23,20 @@ export const isAuthenticated = () => {
     return false;
 }
 
+export const isAuthenticatedToken = async () => {
+    const token = await getToken();
+    console.log("isAuthenticated", token);
+    if (!token) {
+        deleteLocalStorage('token');
+        deleteLocalStorage('user');
+        return false;
+    }
+    return true;
+}
+
 export const logout = (next) => {
     deleteLocalStorage('token');
     deleteLocalStorage('user');
-
     next();
 };
 
