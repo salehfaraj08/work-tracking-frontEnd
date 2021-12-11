@@ -1,14 +1,18 @@
 import './style.css'
 import { useState } from 'react';
 import { addWorker } from '../../api/restApi';
+import { isAuthenticated } from '../../services/authentication';
+import { useHistory } from 'react-router-dom';
 const AddWorker = () => {
+    const history = useHistory();
     const [formData, setFormData] = useState({
         passportId: '',
         password: '',
-        firstName:'',
-        lastName:''
+        firstName: '',
+        lastName: ''
     });
     const [msgError, setMsgError] = useState(false);
+    const [successMsg, setSuccessMsg] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
     const handleChange = (e) => {
         const regex = /^[0-9]*$/;
@@ -18,7 +22,7 @@ const AddWorker = () => {
                 [e.target.name]: e.target.value
             });
         }
-        else if(e.target.name !== 'passportId'){
+        else if (e.target.name !== 'passportId') {
             setFormData({
                 ...formData,
                 [e.target.name]: e.target.value
@@ -27,7 +31,7 @@ const AddWorker = () => {
         else {
             window.alert('please enter only numbers');
         }
-        console.log(formData);  
+        console.log(formData);
     };
 
     const handleSubmit = async (e) => {
@@ -35,25 +39,30 @@ const AddWorker = () => {
         e.preventDefault();
         console.log('login', formData.passportId, formData.password);
         if (formData.passportId.length === 9) {
-            try {
-                const worker = {passportId:formData.passportId,
-                    firstName:formData.firstName,
-                    lastName:formData.lastName,
-                    password:formData.password
-                }
-                const response = await addWorker(worker)
-                console.log(response.data);
-                if (response.status === 200) {
-                }
+            const worker = {
+                passportId: formData.passportId,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                password: formData.password
             }
-            catch (err) {
-                console.log('err',err);
-                if(err.response.data.error!==undefined){
-                    
-                    setMsgError(err.response.data.error);
+            const response = await addWorker(worker)
+            console.log("response.data", response);
+            if (response.status === 200) {
+                setShowLoader(false);
+                setSuccessMsg(true);
+            } else {
+                setShowLoader(false);
+                if (response.status === 403) {
+                    if(!isAuthenticated()){
+                        console.log('pushed worker');
+                        history.push('/signin')
+                    }
                 }
-                else{
-                    setMsgError('');
+                else {
+                    const error = response.data.msg;
+                    console.log(error);
+                    setSuccessMsg(false);
+                    setMsgError(error);
                 }
             }
 
@@ -90,8 +99,9 @@ const AddWorker = () => {
                         </div>
                         <button type='submit' className='addWorker-btn'>Add Worker</button>
                         {msgError && <><div className='msgError'>{msgError}</div></>}
+                        {successMsg && <><div style={{ textAlign: 'center', color: 'green' }}>Worker have been added successfully</div></>}
                     </form>
-                    {showLoader&&<div className='spinnerCont'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
+                    {showLoader && <div className='add-worker-spinnerCont'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
                 </div>
             </div>
         </div>

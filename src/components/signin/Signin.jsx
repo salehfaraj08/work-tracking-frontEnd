@@ -63,6 +63,7 @@ const Signin = () => {
                 }
             }
             catch (err) {
+                setShowLoader(false);
                 if(err.response.data.error){
                     setMsgError(err.response.data.error);
                 }

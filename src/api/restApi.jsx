@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { isAuthenticatedToken } from '../services/authentication';
 const api = axios.create({
     baseURL: "http://localhost:5001/api",
     headers: {
@@ -38,7 +39,10 @@ export const addWorker = async (worker) => {
         return await api.post('workers/addUser', worker, headers);
     } catch (err) {
         console.log(err.response);
-        return err;
+        if (err.response.status === 403) {
+            await isAuthenticatedToken();
+        }
+        return err.response;
     }
 }
 
@@ -60,5 +64,25 @@ export const getToken = async () => {
         console.log(err.response);
         if (err.response.status === 403)
             return false;
+    }
+}
+
+export const getShifts = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    let headers = {
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token ? `Bearer ${token}` : ''
+        }
+    }
+    console.log("id:", id,'headers',headers);
+    try {
+        return await api.get(`workers/getShifts/${id}`, headers);
+    } catch (err) {
+        console.log(err.response);
+        if (err.response.status === 403) {
+            await isAuthenticatedToken();
+        }
+        return err.response;
     }
 }
