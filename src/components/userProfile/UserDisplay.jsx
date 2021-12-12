@@ -28,6 +28,8 @@ const UserDisplay = () => {
             setShowLoader(false);
             console.log(response.data);
             const workerShifts = response.data;
+            if (workerShifts.length === 0)
+                setShowShiftsText(true);
             console.log(workerShifts);
             setShifts(workerShifts);
         } else {

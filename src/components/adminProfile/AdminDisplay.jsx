@@ -28,6 +28,8 @@ const AdminDisplay = () => {
             console.log(response.data);
             const workerShifts = response.data;
             console.log(workerShifts);
+            if (workerShifts.length === 0)
+                setShowShiftsText(true);
             setShowLoader(false);
             setShifts(workerShifts);
         } else {
@@ -104,7 +106,7 @@ const AdminDisplay = () => {
             </div>
         }
         {
-            shifts.length === 0 && showShiftsTextVisible &&
+            showShiftsTextVisible &&
             <div className="dontHave">
                 <p>
                     You dont have any shifts this month yet.
