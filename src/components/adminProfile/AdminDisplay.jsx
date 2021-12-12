@@ -63,7 +63,7 @@ const AdminDisplay = () => {
                 <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
         }
-        {showShiftsVisible && shifts.length > 0 && shifts && <h3 style={{ marginTop:'2vh', textAlign: 'center' }}>Your Monthly Shifts</h3>}
+        {showShiftsVisible && shifts.length > 0 && shifts && <h3 style={{ marginTop: '2vh', textAlign: 'center' }}>Your Monthly Shifts</h3>}
         {showShiftsVisible && shifts.length > 0 && shifts &&
             <div className="limiter">
                 <div className="container-table100">
@@ -104,7 +104,7 @@ const AdminDisplay = () => {
             </div>
         }
         {
-            showShiftsTextVisible &&
+            shifts.length === 0 && showShiftsTextVisible &&
             <div className="dontHave">
                 <p>
                     You dont have any shifts this month yet.
