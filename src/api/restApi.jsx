@@ -75,7 +75,7 @@ export const getShifts = async (id) => {
             'authorization': token ? `Bearer ${token}` : ''
         }
     }
-    console.log("id:", id,'headers',headers);
+    console.log("id:", id, 'headers', headers);
     try {
         return await api.get(`workers/getShifts/${id}`, headers);
     } catch (err) {
@@ -86,3 +86,42 @@ export const getShifts = async (id) => {
         return err.response;
     }
 }
+
+export const startShift = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    let headers = {
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token ? `Bearer ${token}` : ''
+        }
+    }
+    console.log("id start shift:", id, 'headers', headers);
+    try {
+        return await api.post('shifts/startShift', {id}/* , headers */);
+    } catch (err) {
+        if (err.response.status === 403) {
+            await isAuthenticatedToken();
+        }
+        return err.response;
+    }
+}
+
+export const endShift = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    let headers = {
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token ? `Bearer ${token}` : ''
+        }
+    }
+    console.log("id end shift:", id, 'headers', headers);
+    try {
+        return await api.put('shifts/endShift', {id}/* , headers */);
+    } catch (err) {
+        if (err.response.status === 403) {
+            await isAuthenticatedToken();
+        }
+        return err.response;
+    }
+}
+

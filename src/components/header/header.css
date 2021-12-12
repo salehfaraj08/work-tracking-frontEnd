@@ -15,12 +15,11 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3vw;
-    height: 13vh;
+    padding: 0.8rem;
     color: #fff;
-    border: 1px solid #4F6D7A;
-    border-radius: 2rem;
-    background-color: #DBE9EE;
+    /* border: 1px solid #4F6D7A; */
+
+    background-color: #81968F;
 }
 
 
@@ -53,7 +52,7 @@ li {
 }
 
 .menu li:hover {
-    background-color: #4A6FA5;
+    background-color: #CBD4C2;
     border-radius: 5px;
     transition: 0.3s ease;
 }

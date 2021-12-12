@@ -11,16 +11,16 @@ const Header = () => {
             history.push('/signin');
         });
     };
-    const handleClick = async () => {
-        if (isAuthenticated()){
-            console.log("isAuthenticated");
-            const auth = await isAuthenticatedToken();
-            if(!auth){
-                console.log("pushed");
-                history.push('/signin');
-            }
-        }
-    }
+    // const handleClick = async () => {
+    //     if (isAuthenticated()) {
+    //         console.log("isAuthenticated");
+    //         const auth = await isAuthenticatedToken();
+    //         if (!auth) {
+    //             console.log("pushed");
+    //             history.push('/signin');
+    //         }
+    //     }
+    // }
 
     // render
     return (<>
@@ -50,13 +50,13 @@ const Header = () => {
                     {isAuthenticated() && isAuthenticated().role === 'user' && (
                         <>
                             <li>
-                                <Link className='a' to='/user'>
+                                <Link  className='a' to='/user'>
                                     profile
                                 </Link>
                             </li>
                             <li>
-                                <Link className='a' to='/user/startShift'>
-                                    Start Shift
+                                <Link className='a' to='/startShift'>
+                                    My shift
                                 </Link>
                             </li>
                         </>
@@ -65,13 +65,18 @@ const Header = () => {
                     {isAuthenticated() && isAuthenticated().role === 'admin' && (
                         <>
                             <li>
-                                <Link onClick={handleClick} className='a' to='/admin'>
+                                <Link className='a' to='/admin'>
                                     profile
                                 </Link>
                             </li>
                             <li>
-                                <Link onClick={handleClick} className='a' to='/admin/addWorker'>
+                                <Link className='a' to='/admin/addWorker'>
                                     Add Worker
+                                </Link>
+                            </li>
+                            <li>
+                                <Link  className='a' to='/startShift'>
+                                    My shift
                                 </Link>
                             </li>
                         </>

@@ -23,6 +23,10 @@ export const isAuthenticated = () => {
     return false;
 }
 
+export const getUser = () => {
+    return getLocalStorage('user');
+}
+
 export const isAuthenticatedToken = async () => {
     const token = await getToken();
     console.log("isAuthenticated", token);
