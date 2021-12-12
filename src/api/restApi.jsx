@@ -97,7 +97,7 @@ export const startShift = async (id) => {
     }
     console.log("id start shift:", id, 'headers', headers);
     try {
-        return await api.post('shifts/startShift', {id}/* , headers */);
+        return await api.post('shifts/startShift', {id}, headers);
     } catch (err) {
         if (err.response.status === 403) {
             await isAuthenticatedToken();
@@ -116,7 +116,7 @@ export const endShift = async (id) => {
     }
     console.log("id end shift:", id, 'headers', headers);
     try {
-        return await api.put('shifts/endShift', {id}/* , headers */);
+        return await api.put('shifts/endShift', {id}, headers);
     } catch (err) {
         if (err.response.status === 403) {
             await isAuthenticatedToken();

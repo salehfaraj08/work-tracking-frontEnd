@@ -5,10 +5,12 @@ import { isAuthenticated } from "../../services/authentication";
 import './style.css'
 
 const AdminDisplay = () => {
+    const [showLoader, setShowLoader] = useState(false);
     const history = useHistory();
     const [shifts, setShifts] = useState([]);
     const [user, setUser] = useState(null);
     const [showShiftsVisible, setShowShifts] = useState(false);
+    const [showShiftsTextVisible, setShowShiftsText] = useState(false);
     useEffect(() => {
         const getUser = isAuthenticated();
         console.log(getUser);
@@ -18,6 +20,7 @@ const AdminDisplay = () => {
 
     }, []);
     const showShifts = async () => {
+        setShowLoader(true);
         setShowShifts(true);
         const response = await getShifts(user._id);
         console.log("getshifts", response);
@@ -25,6 +28,7 @@ const AdminDisplay = () => {
             console.log(response.data);
             const workerShifts = response.data;
             console.log(workerShifts);
+            setShowLoader(false);
             setShifts(workerShifts);
         } else {
             if (response.status === 403) {
@@ -34,6 +38,8 @@ const AdminDisplay = () => {
                 }
             }
             else {
+                setShowShiftsText(true);
+                setShowLoader(false);
                 const error = response.data.msg;
                 console.log(error);
             }
@@ -42,16 +48,22 @@ const AdminDisplay = () => {
 
     return (<>
         <div className='welcome'>
-            <div >Administrator</div>
-            <div >
+            <div className='Administrator'>Administrator</div>
+            <div className='welcomeAdministrator'>
                 Welcome {user && user.firstName} {user && user.lastName}
             </div>
         </div>
-        <div>
-            <p>Click the button to see your monthly shifts</p>
-            <input value='click' type="button" onClick={showShifts} />
+
+        <div className="seeMonthly">
+            <p style={{ color: 'black', fontSize: '18px' }}>Click the button to see your monthly shifts</p>
+            <input className="button-77" value='click' type="button" onClick={showShifts} />
         </div>
-        {showShiftsVisible && shifts.length > 0 && shifts && <h3 style={{ textAlign: 'center' }}>Your Monthly Shifts</h3>}
+        {showLoader &&
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+        }
+        {showShiftsVisible && shifts.length > 0 && shifts && <h3 style={{ marginTop:'2vh', textAlign: 'center' }}>Your Monthly Shifts</h3>}
         {showShiftsVisible && shifts.length > 0 && shifts &&
             <div className="limiter">
                 <div className="container-table100">
@@ -92,9 +104,11 @@ const AdminDisplay = () => {
             </div>
         }
         {
-            showShiftsVisible && !shifts &&
-            <div>
-                You dont have any shifts this month yet.
+            showShiftsTextVisible &&
+            <div className="dontHave">
+                <p>
+                    You dont have any shifts this month yet.
+                </p>
             </div>
         }
 

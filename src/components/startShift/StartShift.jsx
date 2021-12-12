@@ -13,6 +13,8 @@ const StartShift = () => {
     const history = useHistory();
 
     const startShiftHandle = async () => {
+        setSuccessMsg(false);
+        setMsgError(false);
         setShowLoader(true);
         console.log('start shift');
         const user = getUser();
@@ -41,6 +43,7 @@ const StartShift = () => {
 
     const endShiftHandle = async () => {
         setSuccessMsg(false);
+        setMsgError(false);
         if (shift) {
             console.log('end shift');
             console.log(shift);
@@ -88,7 +91,7 @@ const StartShift = () => {
         </div>
         {showLoader &&
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
         }
         {successMsg && <div style={{ display: 'flex', justifyContent: 'center' }}> <div className='success'>You have started your shift successfully</div></div>}
