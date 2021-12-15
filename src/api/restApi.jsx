@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { isAuthenticatedToken } from '../services/authentication';
 const api = axios.create({
-    baseURL: "https://work-track-back-end.herokuapp.com/api",
+    baseURL: "http://localhost:5001/api",
     headers: {
         'Content-Type': 'application/json',
     },

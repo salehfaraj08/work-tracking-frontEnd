@@ -50,7 +50,7 @@ const UserDisplay = () => {
 
     return (<>
         <div className='welcome'>
-            <div className='welcomeUser'>
+            <div style={{}} className='welcomeUser'>
                 Welcome {user && user.firstName} {user && user.lastName}
             </div>
         </div>
